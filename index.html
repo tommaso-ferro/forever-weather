@@ -6,6 +6,9 @@
     <title>Forever Weather</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -41,7 +44,23 @@
         </div>
 
         <div class="info-container">
-
+            <div class="location">
+                <i class="bi bi-geo-alt-fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                    </svg>
+                </i><p>Rome, Italy <span class="date">(Today)</span></p>
+            </div>
+            <div class="degrees-infos">
+                <h1 class="degrees">18°</h1>
+                <div class="high-low">
+                    <p>H 22°</p>
+                    <p>L 14°</p>
+                </div>
+            </div>
+            <div class="weather-text">
+                <h1>Clear Sky</h1>
+            </div>
         </div>    
 
         <div class="other-container">
@@ -52,6 +71,12 @@
 
         </div>
     </div>
+
+    <div id="controls" style="position: fixed; top: 10px; left: 10px; z-index: 100;">
+    <button onclick="changeWeather('clear')">☀️ Sole</button>
+    <button onclick="changeWeather('rain')">🌧️ Pioggia</button>
+    <button onclick="changeWeather('clouds')">☁️ Nuvole</button>
+</div>
         
     <script src="script.js"></script>
 </body>
