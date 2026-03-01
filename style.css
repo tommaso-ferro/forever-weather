@@ -21,8 +21,8 @@
 
     border: rgba(124, 124, 124, 0.486) solid 1px;
     border-radius: 50px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
 }
 
 .info-container {
@@ -49,10 +49,10 @@
 }
 
 .high-low p{
-    border: rgba(124, 124, 124, 0.486) solid 1px;
+    border: rgba(172, 172, 172, 0.486) solid 1px;
     border-radius: 50px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     padding: 20%;
     padding-right: 110%;
     margin: 10%;
@@ -61,7 +61,7 @@
 
 .degrees {
     font-size: 5em;
-    font-weight: 300; 
+    font-weight: 200; 
     letter-spacing: 3px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     text-transform: capitalize;
@@ -95,9 +95,82 @@
 .other-container {
     grid-column: 3 / 4; /* Occupa la terza colonna */
     grid-row: 1 / 2;    /* Sta nella prima riga in alto */
-    
-    border: rgb(0, 255, 0) solid 1px;
     border-radius: 50px;
+}
+
+.hero-info{
+    margin: 5%;
+}
+
+.description{
+    margin-top: 30%;
+    
+    opacity: 0.9;
+    text-align: center;
+}
+
+.recently-searched{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15% 5% 0 5%;
+}
+
+.recently-searched p{
+    opacity: 0.5;
+}
+
+.recently-searched a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.recently-searched a:hover{
+    text-decoration: underline;
+}
+
+.recently-searched-cities{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.city {
+    
+    border: rgba(172, 172, 172, 0.486) solid 1px;
+    border-radius: 50px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    padding: 5%;
+    width: 100%;
+    
+}
+
+.city h3{
+    margin: 0;
+    font-size: 2em;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.397);
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+}
+
+.city i{
+    color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
+.city p{
+    margin-top: 10%;
+    font-size: 1.2em;
+}
+
+.temp-icon-text {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
 }
 
 .weekly-container {
@@ -138,6 +211,7 @@ logo span {
 
 .details p{
     margin-left: 5%;
+    opacity: 0.5;
 }
 
 .details a{
@@ -172,6 +246,7 @@ logo span {
 
 .select-area p{
     margin-left: 5%;
+    opacity: 0.5;
 }
 
 .world-illustration {
@@ -194,24 +269,32 @@ logo span {
 
 #search-bar{
     padding: 2%;
+    border-radius: 30px;
+    border: rgba(172, 172, 172, 0.486) solid 1px;
     border-radius: 50px;
-    border: rgb(0, 0, 0) solid 1px;
+    background-color: rgba(34, 34, 34, 0.411);
     text-align: center;
-    background-color: rgba(65, 65, 65, 0.26);
+    color: white;
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: rgba(172, 172, 172, 0.212);
 }
 
 .search button{
     width: 60px;
     height: 35px;
     border-radius: 30px;
-    border: rgb(0, 0, 0) solid 1px;
-    background-color: rgba(65, 65, 65, 0.26);
+    border: rgba(172, 172, 172, 0.486) solid 1px;
+    color: rgba(172, 172, 172, 0.486);
+    background-color: rgba(34, 34, 34, 0.411);
     margin-left: 5%;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .search button:hover{
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(172, 172, 172, 0.212);
     color: white;
 }
