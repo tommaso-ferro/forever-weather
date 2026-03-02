@@ -1,3 +1,14 @@
+async function fetchWeather() {
+    let response = await fetch(
+        'https://wttr.in/Roma?format=j1'
+    ).then(console.log("Dati meteo ricevuti"));
+
+    const data = await response.json();
+    const weatherCondition = data.current_condition[0].weatherDesc[0].value;
+    console.log(data);
+    
+}
+
 function updateBackground(weatherCondition) {
     const body = document.body;
     let imageUrl = '';
@@ -37,3 +48,5 @@ function changeWeather(condition) {
     
     console.log("Meteo simulato:", condition);
 }
+
+window.addEventListener('load', fetchWeather);
