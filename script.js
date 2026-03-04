@@ -1,14 +1,17 @@
-async function fetchWeather() {
-    let response = await fetch(
-        'https://wttr.in/Roma?format=j1'
-    ).then(console.log("Dati meteo ricevuti"));
+const searchBar = document.querySelector('#search-bar');
+const searchButton = document.querySelector('#search-button');
 
-    const data = await response.json();
-    const weatherCondition = data.current_condition[0].weatherDesc[0].value;
-    console.log(data);
-    
+async function fetchWeather(city) {
+
+    let response = fetch("info.json").then(response => response.json());
+
+    const data = await response;
+
+    const weatherCondition = data.weather[0].main; 
+    console.log(weatherCondition);
+    updateBackground(weatherCondition);
 }
-
+    
 function updateBackground(weatherCondition) {
     const body = document.body;
     let imageUrl = '';
@@ -16,37 +19,37 @@ function updateBackground(weatherCondition) {
     // Mappiamo le condizioni alle immagini
     switch (weatherCondition.toLowerCase()) {
         case 'clear':
-            imageUrl = 'url("small-clouds-with-sun.jpg")';
+            imageUrl = 'url("images/engin-akyurt-3ihnKT5apmg-unsplash.jpg")';
             break;
         case 'rain':
-            imageUrl = 'url("rainy.jpg")';
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
+            break;
+        case 'drizzle':
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
         case 'clouds':
-            imageUrl = 'url("cloudy.jpg")';
+            imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
+            break;
+        case 'snow':
+            imageUrl = 'url("images/snowy.jpg")';
+            break;
+        case 'thunderstorm':
+            imageUrl = 'url("images/thunderstorm.jpg")';
             break;
         default:
-            imageUrl = 'url("default.jpg")';
+            imageUrl = 'url("images/default.jpg")';
     }
 
     // Applichiamo lo sfondo al body
     body.style.backgroundImage = imageUrl;
 }
 
+searchButton.addEventListener('click', () => {
+    const city = searchBar.value;
+    if (city) {
+        fetchWeather(city);
+    }
+});
 
-// Rimuovi le classi precedenti e aggiungi quella nuova
-body.className = ''; 
-body.classList.add(weatherCondition.toLowerCase());
-
-function changeWeather(condition) {
-    const body = document.body;
-    
-    // Rimuoviamo eventuali classi precedenti
-    body.className = ''; 
-    
-    // Aggiungiamo la classe corrispondente alla condizione cliccata
-    body.classList.add(condition);
-    
-    console.log("Meteo simulato:", condition);
-}
 
 window.addEventListener('load', fetchWeather);

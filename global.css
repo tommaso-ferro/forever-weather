@@ -10,13 +10,17 @@ html body{
 }
 
 body.clear {
-    background-image: url('images/engin-akyurt-3ihnKT5apmg-unsplash.jpg');
+    background-image: url('');
 }
 
 body.rain {
-    background-image: url('images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg');
+    background-image: url('');
+}
+
+body.drizzle {
+    background-image: url('');
 }
 
 body.clouds {
-    background-image: url('images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg');
+    background-image: url('');
 }
