@@ -10,6 +10,14 @@ async function fetchWeather(city) {
     const weatherCondition = data.weather[0].main; 
     console.log(weatherCondition);
     updateBackground(weatherCondition);
+
+    const temperature = data.main.temp;
+    const tempMin = data.main.temp_min;
+    const tempMax = data.main.temp_max;
+    const humidity = data.main.humidity;
+    const windSpeed = data.wind.speed;
+
+    document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
 }
     
 function updateBackground(weatherCondition) {
