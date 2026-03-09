@@ -227,12 +227,36 @@ logo span {
     text-decoration: underline;
 }
 
-.chart{
+.status-info{
+    display: flex;
+    justify-content: space-around;
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.199);
     width: 90%;
     height: 100%;
     margin: auto;
+}
+
+.card-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.116);
+    border-radius: 30px;
+    padding: 5% 10%;
+}
+
+.humidity h3{
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.humidity p{
+    opacity: 100%;
 }
 
 .select-area{
