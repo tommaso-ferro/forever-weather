@@ -42,9 +42,14 @@ async function fetchWeather(city) {
 function updateBackground(weatherCondition) {
     const body = document.body;
     let imageUrl = '';
+    const condition = weatherCondition.toLowerCase();
+
+    // Reset delle classi per rimuovere il meteo precedente e aggiunta di quello nuovo
+    body.className = ''; 
+    body.classList.add(condition); 
 
     // Mappiamo le condizioni alle immagini
-    switch (weatherCondition.toLowerCase()) {
+    switch (condition) {
         case 'clear':
             imageUrl = 'url("images/engin-akyurt-3ihnKT5apmg-unsplash.jpg")';
             break;

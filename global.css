@@ -10,7 +10,42 @@ html body{
 }
 
 body.clear {
-    background-image: url('');
+    background-image: url('');   
+}
+
+body.clear #search-bar {
+    border-color: rgba(255, 255, 255, 0.473);
+}
+
+body.clear #search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.767);
+}
+
+body.clear .search button {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.473);
+}
+
+body.clear .search button:hover {
+    background-color: rgba(32, 32, 32, 0.2); 
+}
+
+body.clear .description{
+    opacity: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.397);
+    border-color: rgba(255, 255, 255, 0.473);
+}
+
+body.clear .weather-text h1{
+    opacity: 0.9;
+}
+
+body.clear .recently-searched p{
+    opacity: 0.9;
+}
+
+body.clear .recently-searched a{
+    opacity: 1;
 }
 
 body.rain {
