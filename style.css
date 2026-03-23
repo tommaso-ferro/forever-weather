@@ -329,3 +329,81 @@ logo span {
     background-color: rgba(172, 172, 172, 0.212);
     color: white;
 }
+
+@media (max-width: 1024px) {
+    .general-container {
+        /* Passiamo da 3 a 2 colonne */
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: auto auto auto;
+        height: auto; /* Permette lo scorrimento se il contenuto è tanto */
+        min-height: 100vh;
+        gap: 20px;
+    }
+
+    .status-container {
+        grid-column: 1 / 3; /* Occupa tutta la larghezza in alto */
+        grid-row: 1 / 2;
+        flex-direction: row; /* Mette gli elementi in orizzontale */
+        padding: 20px;
+    }
+
+    .info-container {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .other-container {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .weekly-container {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+        min-height: 200px; 
+    }
+    
+    .select-area, .details {
+        width: 45%; /* Affianca area di ricerca e dettagli meteo */
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .general-container {
+        /* Abbandoniamo la griglia e impiliamo tutto verticalmente */
+        display: flex; 
+        flex-direction: column;
+        height: auto;
+        padding: 5%;
+        gap: 20px;
+    }
+
+    .status-container {
+        flex-direction: column; /* Ripristina la colonna singola per lo status */
+        padding: 20px 5%;
+    }
+
+    .select-area, .details {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* Riduciamo i font enormi per farli entrare nello schermo */
+    .degrees {
+        font-size: 3.5em; 
+    }
+
+    .weather-text h1 {
+        font-size: 2.5em;
+    }
+
+    .recently-searched-cities {
+        flex-direction: column; /* Impila le card delle città cercate di recente */
+        gap: 15px;
+    }
+
+    .city {
+        width: auto; 
+    }
+}

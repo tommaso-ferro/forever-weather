@@ -8,6 +8,18 @@ import * as topojson from 'https://esm.sh/topojson-client';
         .width(230)  
         .height(230);
 
+    world
+        .labelLat(d => d.lat)
+        .labelLng(d => d.lng)
+        .labelText(d => d.text)
+        .labelSize(1.5)           // Dimensione del testo
+        .labelDotRadius(0.4)      // Dimensione del puntino sulla mappa
+        .labelColor(() => 'red')
+        .labelAltitude(0.01) // Colore del puntatore
+        .labelIncludeDot(true)
+        .labelDotOrientation('outward')
+        .labelResolution(2);
+
 const searchBar = document.querySelector('#search-bar');
 const searchButton = document.querySelector('#search-button');
 const weatherInfoText = document.querySelector('#weather-info-h1');
@@ -44,13 +56,22 @@ async function fetchWeather(city) {
 
     const lat = data.coord.lat;
     const lon = data.coord.lon;
+    const cityName = data.name;
 
-    world.pointOfView({ lat: lat, lng: lon, altitude: 0.6 }, 1500);
+    world.labelsData([{
+        lat: lat,
+        lng: lon,
+        text: cityName
+    }]);
+
+    world.pointOfView({ lat: lat, lng: lon, altitude: 0.3 }, 1500);
     world.controls().autoRotate = false;
 
     document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
     highTempText.textContent = `H: ${Math.round(tempMax)}°`;
     lowTempText.textContent = `L: ${Math.round(tempMin)}°`;
+
+    updatePosition(cityName, data.sys.country);
 }
     
 function updateBackground(weatherCondition) {
@@ -113,12 +134,11 @@ fetch('//cdn.jsdelivr.net/npm/world-atlas/land-110m.json').then(res => res.json(
       .then(landTopo => {
         world
           .polygonsData(topojson.feature(landTopo, landTopo.objects.land).features)
-          // 4. Cambia la material side su FrontSide per non vedere la parte interna del globo
           .polygonCapMaterial(new MeshLambertMaterial({ color: 'rgba(255,255,255,0.8)', side: FrontSide }))
           .polygonSideColor(() => 'rgba(0,0,0,0)');
       });
 
 window.addEventListener('load', () => {
-    fetchWeather(); // Se non passi una città di default, ricordati di gestirlo!
+    fetchWeather(); 
     dateUpdate();
 });
