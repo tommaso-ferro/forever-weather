@@ -1,3 +1,13 @@
+import { MeshLambertMaterial, FrontSide } from 'https://esm.sh/three';
+import * as topojson from 'https://esm.sh/topojson-client';
+
+    const world = new Globe(document.getElementById('globeViz'))
+        .backgroundColor('rgba(0,0,0,0)')
+        .showGlobe(false)
+        .showAtmosphere(false)
+        .width(230)  
+        .height(230);
+
 const searchBar = document.querySelector('#search-bar');
 const searchButton = document.querySelector('#search-button');
 const weatherInfoText = document.querySelector('#weather-info-h1');
@@ -9,9 +19,7 @@ const humidityText = document.querySelector('#humidity');
 const windSpeedText = document.querySelector('#wind-speed');
 
 async function fetchWeather(city) {
-
     let response = fetch("info.json").then(response => response.json());
-
     const data = await response;
 
     const weatherCondition = data.weather[0].main; 
@@ -33,6 +41,12 @@ async function fetchWeather(city) {
     const cityText = data.name;
     const countryText = data.sys.country;
     updatePosition(cityText, countryText);
+
+    const lat = data.coord.lat;
+    const lon = data.coord.lon;
+
+    world.pointOfView({ lat: lat, lng: lon, altitude: 0.6 }, 1500);
+    world.controls().autoRotate = false;
 
     document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
     highTempText.textContent = `H: ${Math.round(tempMax)}°`;
@@ -78,11 +92,8 @@ function updateBackground(weatherCondition) {
 
 searchButton.addEventListener('click', () => {
     const city = searchBar.value;
-    const country = data.sys.country;
-    const city2 = data.name;
     if (city) {
         fetchWeather(city);
-        updatePosition(city2, country);
     }
 });
 
@@ -93,9 +104,21 @@ function updatePosition(city, country) {
 function dateUpdate(){
     let now = new Date();  
     dateText.textContent = `(${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })})`;
-}
+}     
+
+world.controls().autoRotate = true;
+world.controls().autoRotateSpeed = 1;
+
+fetch('//cdn.jsdelivr.net/npm/world-atlas/land-110m.json').then(res => res.json())
+      .then(landTopo => {
+        world
+          .polygonsData(topojson.feature(landTopo, landTopo.objects.land).features)
+          // 4. Cambia la material side su FrontSide per non vedere la parte interna del globo
+          .polygonCapMaterial(new MeshLambertMaterial({ color: 'rgba(255,255,255,0.8)', side: FrontSide }))
+          .polygonSideColor(() => 'rgba(0,0,0,0)');
+      });
 
 window.addEventListener('load', () => {
-    fetchWeather();
+    fetchWeather(); // Se non passi una città di default, ricordati di gestirlo!
     dateUpdate();
 });
