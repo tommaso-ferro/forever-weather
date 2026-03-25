@@ -12,10 +12,10 @@ import * as topojson from 'https://esm.sh/topojson-client';
         .labelLat(d => d.lat)
         .labelLng(d => d.lng)
         .labelText(d => d.text)
-        .labelSize(1.5)           // Dimensione del testo
-        .labelDotRadius(0.4)      // Dimensione del puntino sulla mappa
+        .labelSize(1.5)           
+        .labelDotRadius(0.4)      
         .labelColor(() => 'red')
-        .labelAltitude(0.01) // Colore del puntatore
+        .labelAltitude(0.01) 
         .labelIncludeDot(true)
         .labelDotOrientation('outward')
         .labelResolution(2);
@@ -29,6 +29,8 @@ const positionText = document.querySelector('#position-text');
 const dateText = document.querySelector('#date');
 const humidityText = document.querySelector('#humidity');
 const windSpeedText = document.querySelector('#wind-speed');
+
+let weeklyChartInstance = null;   
 
 async function fetchWeather(city) {
     let response = fetch("info.json").then(response => response.json());
@@ -72,8 +74,77 @@ async function fetchWeather(city) {
     lowTempText.textContent = `L: ${Math.round(tempMin)}°`;
 
     updatePosition(cityName, data.sys.country);
+
+    await fetchForecast();
 }
     
+async function fetchForecast() {
+    let response = fetch("forecast.json").then(response => response.json());
+    const data = await response;
+
+    const labels = data.forecast.map(item => item.day);
+    const temps = data.forecast.map(item => item.temp);
+
+    createWeeklyChart(labels, temps);
+}
+
+function createWeeklyChart(labels, temps) {
+    const ctx = document.getElementById('weekly-chart').getContext('2d');
+
+    if (weeklyChartInstance) {
+        weeklyChartInstance.destroy();
+    }
+
+    weeklyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature °C',
+                data: temps,
+                borderColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(199, 36, 36, 0)',
+                borderWidth: 4,
+                tension: 0.4,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: 'rgba(255,255,255,1)',
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    grid: { color: 'rgba(255,255,255,0)' },
+                    ticks: {
+                        color: 'rgba(255,255,255,0.8)',
+                        font: { size: 13, family: 'Inter' },
+                        stepSize: 5
+                    }
+                },
+                x: {
+                    grid: { color: 'rgba(255,255,255,0)' },
+                    ticks: {
+                        color: 'rgba(255,255,255,0.8)',
+                        font: { size: 13, family: 'Inter' }
+                    }
+                }
+            }
+        }
+    });
+}
+
 function updateBackground(weatherCondition) {
     const body = document.body;
     let imageUrl = '';
@@ -124,7 +195,7 @@ function updatePosition(city, country) {
 
 function dateUpdate(){
     let now = new Date();  
-    dateText.textContent = `(${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })})`;
+    dateText.textContent = `(${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })})`; 
 }     
 
 world.controls().autoRotate = true;
@@ -141,4 +212,7 @@ fetch('//cdn.jsdelivr.net/npm/world-atlas/land-110m.json').then(res => res.json(
 window.addEventListener('load', () => {
     fetchWeather(); 
     dateUpdate();
+    resizeCanvas();
 });
+
+window.addEventListener('resize', resizeCanvas);

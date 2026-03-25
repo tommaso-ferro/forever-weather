@@ -1,0 +1,32 @@
+{
+    "forecast": [
+        {
+            "day": "Sat",
+            "temp": 18
+        },
+        {
+            "day": "Sun",
+            "temp": 20
+        },
+        {
+            "day": "Mon",
+            "temp": 21
+        },
+        {
+            "day": "Tue",
+            "temp": 23
+        },
+        {
+            "day": "Wed",
+            "temp": 25
+        },
+        {
+            "day": "Thu",
+            "temp": 24
+        },
+        {
+            "day": "Fri",
+            "temp": 22
+        }
+    ]
+}

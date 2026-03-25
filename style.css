@@ -143,14 +143,12 @@
 }
 
 .city {
-    
     border: rgba(172, 172, 172, 0.486) solid 1px;
     border-radius: 50px;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
     padding: 5%;
     width: 100%;
-    
 }
 
 .city h3{
@@ -170,6 +168,7 @@
 .city p{
     margin-top: 10%;
     font-size: 1.2em;
+    text-align: center;
 }
 
 .temp-icon-text {
@@ -182,8 +181,6 @@
     grid-column: 2 / 4; /* Si estende dalla seconda alla quarta colonna (sta sotto a info e other) */
     grid-row: 2 / 3;    /* Sta nella seconda riga in basso */
     
-    border: rgb(174, 0, 255) solid 1px;
-    border-radius: 50px;
 }
 
 .logo{
@@ -328,6 +325,35 @@ logo span {
 .search button:hover{
     background-color: rgba(172, 172, 172, 0.212);
     color: white;
+}
+
+.goto-city{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+    border-radius: 30px;    
+    background: rgba(255, 255, 255, 0.2); /* Sfondo semi-trasparente */
+    backdrop-filter: blur(10px);          /* Sfocatura dello sfondo */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: auto;
+    width: 80%;
+    margin-top: 5%;
+    text-decoration: none;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.goto-city:hover{
+    background: rgba(255, 255, 255, 0.4); /* Sfondo semi-trasparente al passaggio del mouse */
+    color: white;
+}
+
+canvas{
+     width: 100%;
+  height: 100%;
+  display: block;
 }
 
 @media (max-width: 1024px) {

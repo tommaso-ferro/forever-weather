@@ -1,12 +1,12 @@
 {
     "coord": {
-        "lon": 12.3319,
-        "lat": 45.4398
+        "lon": 12.4964,
+        "lat": 41.9029
     },
     "weather": [
         {
             "id": 802,
-            "main": "Clouds",
+            "main": "Clear",
             "description": "scattered clouds",
             "icon": "03n"
         }
@@ -41,6 +41,6 @@
     },
     "timezone": -18000,
     "id": 4219762,
-    "name": "Venice",
+    "name": "Rome",
     "cod": 200
 }
