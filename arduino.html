@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Weather | Arduino API Mode</title>
+    <link rel="icon" href="images/cloudy.png" type="image/png">
+    <link rel="stylesheet" href="arduino.css">
+    <link rel="stylesheet" href="global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
+</head>
+<body>
+
+<div class="general-container">
+    <div class="status-container">
+            <div class="logo">
+                <h1>Forever Weather <br><span style="font-size: 0.8em; font-weight: 200;">Arduino API Mode</span></h1>
+            </div>
+    </div>
+
+    <div class="info-container">
+            <div class="location">
+                <i class="bi bi-geo-alt-fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                    </svg>
+                </i><p id="position-text">...</p><span class="date" id="date">(Today)</span>
+            </div>
+            <div class="degrees-infos">
+                <h1 id="degrees" class="degrees">...°</h1>
+                <div class="high-low">
+                    <p id="high-temp">H: ...°</p>
+                    <p id="low-temp">L: ...°</p>
+                </div>
+            </div>
+            <div class="weather-text">
+                <h1 id="weather-info-h1">...</h1>
+            </div>
+        </div>    
+
+        <div class="other-container">
+            <div class="hero-info">
+                <p class="description">
+                    Driven by real-time data and immersive design, Forever Weather provides seamless, high-fidelity forecasts for every journey, everywhere.
+                </p>
+            </div>
+        </div>
+
+
+    <a href="index.html" id="arduino-btn">Forecast API Mode</a>
+</div>
+
+</body>
+</html>

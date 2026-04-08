@@ -1,0 +1,38 @@
+.general-container {
+    display: flex;
+    gap: 2%; 
+    padding: 2%;
+    height: 100vh;
+    box-sizing: border-box; /* Assicura che padding e border non sforino l'altezza/larghezza */
+}
+
+.status-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 25%;
+    border: rgba(124, 124, 124, 0.486) solid 1px;
+    border-radius: 50px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+}
+
+.logo{
+    border-radius: 50px;
+    text-align: center;
+    margin: 8%;
+}
+
+.logo h1{
+    font-size: 1.5em;
+    font-weight: 800; 
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+}
+
+logo span {
+    font-weight: 300; /* Esempio: WeatherBold */
+}

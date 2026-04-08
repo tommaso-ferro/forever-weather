@@ -59,3 +59,21 @@ body.drizzle {
 body.clouds {
     background-image: url('');
 }
+
+#arduino-btn{
+    background-color: rgba(216, 216, 216, 0.301); 
+    border-radius: 30px; 
+    color: white; 
+    padding: 10px 20px; 
+    text-decoration: none; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#arduino-btn:hover{
+    background-color: rgba(216, 216, 216, 0.5); 
+}

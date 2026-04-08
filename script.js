@@ -29,6 +29,8 @@ const positionText = document.querySelector('#position-text');
 const dateText = document.querySelector('#date');
 const humidityText = document.querySelector('#humidity');
 const windSpeedText = document.querySelector('#wind-speed');
+const gotoCity1Button = document.querySelector('#goto-city-1');
+const gotoCity2Button = document.querySelector('#goto-city-2');
 
 let weeklyChartInstance = null;   
 
@@ -181,6 +183,10 @@ function updateBackground(weatherCondition) {
     // Applichiamo lo sfondo al body
     body.style.backgroundImage = imageUrl;
 }
+
+gotoCity1Button.addEventListener('click', () => {
+    navigator.serial.requestPort();
+});
 
 searchButton.addEventListener('click', () => {
     const city = searchBar.value;
