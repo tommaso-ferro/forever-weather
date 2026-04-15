@@ -1,0 +1,21 @@
+{
+    "len-4": [
+        {
+            "sensor1": "DHT-20",
+            "sensor2": "TSL2591",
+            "temperature": 21.9475,
+            "humidity": 67,
+            "lux": 500.549837
+        }
+    ],
+
+    "lap-2": [
+        {
+            "sensor1": "DHT-20",
+            "sensor2": "TSL2591",
+            "temperature": 23.9475,
+            "humidity": 54,
+            "lux": 789.549837
+        }
+    ]
+}
