@@ -35,31 +35,32 @@ const gotoCity2Button = document.querySelector('#goto-city-2');
 let weeklyChartInstance = null;   
 
 async function fetchWeather(city) {
-    let response = fetch("info.json").then(response => response.json());
+    let response = fetch(`https://wttr.in/${city}?format=j1`).then(response => response.json());
     const data = await response;
+    console.log(data);
 
-    const weatherCondition = data.weather[0].main; 
+    const weatherCondition = data.current_condition[0].weatherDesc[0].value;
     console.log(weatherCondition);
     updateBackground(weatherCondition);
 
-    const weatherDescription = data.weather[0].description;
+    const weatherDescription = data.current_condition[0].weatherDesc[0].value;
     weatherInfoText.textContent = weatherDescription;
 
-    const temperature = data.main.temp;
-    const tempMin = data.main.temp_min;
-    const tempMax = data.main.temp_max;
-    const humidity = data.main.humidity;
+    const temperature = data.current_condition[0].temp_C;
+    const tempMin = data.current_condition[0].temp_C;
+    const tempMax = data.current_condition[0].temp_C;
+    const humidity = data.current_condition[0].humidity;
     humidityText.textContent = `${humidity}%`;
 
-    const windSpeed = data.wind.speed;
+    const windSpeed = data.current_condition[0].windspeedKmph;
     windSpeedText.textContent = windSpeed;
 
-    const cityText = data.name;
-    const countryText = data.sys.country;
+    const cityText = data.nearest_area[0].areaName[0].value;
+    const countryText = data.country[0].value;
     updatePosition(cityText, countryText);
 
-    const lat = data.coord.lat;
-    const lon = data.coord.lon;
+    const lat = data.latitude;
+    const lon = data.longitude;
     const cityName = data.name;
 
     world.labelsData([{
@@ -168,6 +169,9 @@ function updateBackground(weatherCondition) {
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
         case 'clouds':
+            imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
+            break;
+        case 'partly cloudy':
             imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
             break;
         case 'snow':
