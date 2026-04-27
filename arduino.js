@@ -5,17 +5,13 @@ const highTempText = document.querySelector('#high-temp');
 const lowTempText = document.querySelector('#low-temp');
 const positionText = document.querySelector('#position-text');
 const dateText = document.querySelector('#date');
-const humidityText = document.querySelector('#humidity');
+const humidityText = document.querySelector('#humidity-p');
+const luminosityText = document.querySelector('#luminosity-p');
 const windSpeedText = document.querySelector('#wind-speed');
-const gotoCity1Button = document.querySelector('#goto-city-1');
-const gotoCity2Button = document.querySelector('#goto-city-2');
 
 let weeklyChartInstance = null;   
 
 async function fetchIP(id) {
-    /* let response = fetch(`http://${id}/data`).then(response => response.json());
-    const data = await response;
-    console.log(data); */
 
         const response = await fetch(`http://${id}/data`);
         const data = await response.json();
@@ -23,16 +19,18 @@ async function fetchIP(id) {
     const temperature = data[0].temperature;
 
     const humidity = data[0].humidity;
-    //humidityText.textContent = `${humidity}%`;
+    humidityText.textContent = `${humidity}%`;
 
     const lux = data[0].luminosity;
+    luminosityText.textContent = `${lux} lux`;
 
     const laboratoryText = data[0].position;
 
     document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
 
-    updatePosition(laboratoryText);
+    weatherInfoText.innerHTML = '';
 
+    updatePosition(laboratoryText);
     await fetchForecast();
 }
     
@@ -102,10 +100,6 @@ function createWeeklyChart(labels, temps) {
         }
     });
 }
-
-gotoCity1Button.addEventListener('click', () => {
-    navigator.serial.requestPort();
-});
 
 searchButton.addEventListener('click', () => {
     let id = searchBar.value;

@@ -53,15 +53,15 @@ async function fetchWeather(city) {
     humidityText.textContent = `${humidity}%`;
 
     const windSpeed = data.current_condition[0].windspeedKmph;
-    windSpeedText.textContent = windSpeed;
+    windSpeedText.textContent = `${windSpeed} km/h`;
 
     const cityText = data.nearest_area[0].areaName[0].value;
-    const countryText = data.country[0].value;
+    const countryText = data.nearest_area[0].country[0].value;
     updatePosition(cityText, countryText);
 
-    const lat = data.latitude;
-    const lon = data.longitude;
-    const cityName = data.name;
+    const lat = data.nearest_area[0].latitude;
+    const lon = data.nearest_area[0].longitude;
+    const cityName = data.nearest_area[0].areaName[0].value;
 
     world.labelsData([{
         lat: lat,
@@ -75,8 +75,6 @@ async function fetchWeather(city) {
     document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
     highTempText.textContent = `H: ${Math.round(tempMax)}°`;
     lowTempText.textContent = `L: ${Math.round(tempMin)}°`;
-
-    updatePosition(cityName, data.sys.country);
 
     await fetchForecast();
 }
@@ -162,6 +160,9 @@ function updateBackground(weatherCondition) {
         case 'clear':
             imageUrl = 'url("images/engin-akyurt-3ihnKT5apmg-unsplash.jpg")';
             break;
+        case 'sunny':
+            imageUrl = 'url("images/engin-akyurt-3ihnKT5apmg-unsplash.jpg")';
+            break;
         case 'rain':
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
@@ -169,16 +170,25 @@ function updateBackground(weatherCondition) {
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
         case 'clouds':
-            imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
+            break;
+        case 'overcast':
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
         case 'partly cloudy':
             imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
             break;
         case 'snow':
-            imageUrl = 'url("images/snowy.jpg")';
+            imageUrl = 'url("images/aaron-burden-5AiWn2U10cw-unsplash.jpg")';
             break;
         case 'thunderstorm':
-            imageUrl = 'url("images/thunderstorm.jpg")';
+            imageUrl = 'url("images/johannes-plenio-E-Zuyev2XWo-unsplash.jpg")';
+            break;
+        case 'fog':
+            imageUrl = 'url("images/artem-sapegin-TBw3iQGdwbg-unsplash.jpg")';
+            break;
+        case 'mist':
+            imageUrl = 'url("images/artem-sapegin-TBw3iQGdwbg-unsplash.jpg")';
             break;
         default:
             imageUrl = 'url("images/default.jpg")';
@@ -220,7 +230,7 @@ fetch('//cdn.jsdelivr.net/npm/world-atlas/land-110m.json').then(res => res.json(
       });
 
 window.addEventListener('load', () => {
-    fetchWeather(); 
+    //fetchWeather(); 
     dateUpdate();
     resizeCanvas();
 });

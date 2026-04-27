@@ -2,7 +2,7 @@ html body{
     font-family: 'Inter', sans-serif;
     height: 100vh;
     margin: 0;
-    background-image: url('images/kir-iaeQnWp_63c-unsplash.jpg');
+    background-image: url('images/pawel-czerwinski-jTEhcxsenME-unsplash.jpg');
     background-size: cover;
     background-position: center;
     transition: background-image 0.8s ease; 
@@ -130,6 +130,7 @@ html body{
     justify-content: space-between;
     align-items: center;
     margin: 15% 5% 0 5%;
+    flex-wrap: wrap;
 }
 
 .recently-searched p{
@@ -465,4 +466,28 @@ canvas{
 
 #arduino-btn:hover{
     background-color: rgba(216, 216, 216, 0.5); 
+}
+
+.humidity, .luminosity{
+    border: rgba(172, 172, 172, 0.486) solid 1px;
+    border-radius: 50px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    padding: 5%;
+    width: 100%;
+}
+
+.humidity h2, .luminosity h2{
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.397);
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+}
+
+.humidity p, .luminosity p{
+     margin-top: 10%;
+    font-size: 1.2em;
+    text-align: center;
 }
