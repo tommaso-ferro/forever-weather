@@ -45,7 +45,9 @@
             <div class="select-area">
                 <p>Select Area</p>
 
-                <canvas id="lab-map"></canvas>
+                <div class="lab-map" id="lab-map">
+
+                </div>
 
                 <div class="search">
                     <input type="text" placeholder="Write an IP Address..." id="search-bar">
@@ -67,7 +69,8 @@
                 </i><p id="position-text">...</p><span class="date" id="date">(Today)</span>
             </div>
             <div class="degrees-infos">
-                <h1 id="degrees" class="degrees">...°</h1>
+                <h1 id="degrees" class="degrees">...°C</h1>
+                <button id="unit-toggle" class="btn-toggle">°F</button>
             </div>
             <div class="weather-text">
                 <h1 id="weather-info-h1">Waiting for data...</h1>

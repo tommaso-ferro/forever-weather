@@ -39,9 +39,21 @@ async function fetchWeather(city) {
     const data = await response;
     console.log(data);
 
-    const weatherCondition = data.current_condition[0].weatherDesc[0].value;
+    let weatherCondition = data.current_condition[0].weatherDesc[0].value;
     console.log(weatherCondition);
-    updateBackground(weatherCondition);
+    if (weatherCondition == 'Partly cloudy') {
+        weatherCondition = 'partly-cloudy';
+         updateBackground(weatherCondition);
+    } else if (weatherCondition == 'Patchy rain nearby') {
+        weatherCondition = 'patchy-rain-nearby';
+        updateBackground(weatherCondition);
+    } else if (weatherCondition == 'Light rain') {
+        weatherCondition = 'light-rain';
+        updateBackground(weatherCondition);
+    } else {
+        updateBackground(weatherCondition);
+    }
+    
 
     const weatherDescription = data.current_condition[0].weatherDesc[0].value;
     weatherInfoText.textContent = weatherDescription;
@@ -166,6 +178,9 @@ function updateBackground(weatherCondition) {
         case 'rain':
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
+        case 'light-rain':
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
+            break;
         case 'drizzle':
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
@@ -175,8 +190,11 @@ function updateBackground(weatherCondition) {
         case 'overcast':
             imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
-        case 'partly cloudy':
+        case 'partly-cloudy':
             imageUrl = 'url("images/valery-rabchenyuk-OP1kmMw1wSQ-unsplash.jpg")';
+            break;
+        case 'patchy-rain-nearby':
+            imageUrl = 'url("images/alexey-sabulevskiy-tl8GM4dWXnM-unsplash.jpg")';
             break;
         case 'snow':
             imageUrl = 'url("images/aaron-burden-5AiWn2U10cw-unsplash.jpg")';

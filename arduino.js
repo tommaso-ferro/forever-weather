@@ -8,30 +8,35 @@ const dateText = document.querySelector('#date');
 const humidityText = document.querySelector('#humidity-p');
 const luminosityText = document.querySelector('#luminosity-p');
 const windSpeedText = document.querySelector('#wind-speed');
+const labMap = document.querySelector('#lab-map');
+const unitToggleButton = document.querySelector('#unit-toggle');
 
 let weeklyChartInstance = null;   
+let currentTemp;
 
 async function fetchIP(id) {
-
+    try {
         const response = await fetch(`http://${id}/data`);
         const data = await response.json();
 
-    const temperature = data[0].temperature;
+        currentTemp = data[0].temperature;
+        document.querySelector('#degrees').textContent = `${Math.round(currentTemp)}°C`;
 
-    const humidity = data[0].humidity;
-    humidityText.textContent = `${humidity}%`;
+        const humidity = data[0].humidity;
+        humidityText.textContent = `${humidity}%`;
 
-    const lux = data[0].luminosity;
-    luminosityText.textContent = `${lux} lux`;
+        const lux = data[0].luminosity;
+        luminosityText.textContent = `${lux} lux`;
 
-    const laboratoryText = data[0].position;
+        const laboratoryText = data[0].position;
 
-    document.querySelector('#degrees').textContent = `${Math.round(temperature)}°`;
+        weatherInfoText.innerHTML = '';
+        updatePosition(laboratoryText);
 
-    weatherInfoText.innerHTML = '';
-
-    updatePosition(laboratoryText);
-    await fetchForecast();
+        await fetchForecast();
+    } catch (error) {
+        alert("Errore nel recupero dati");
+    }
 }
     
 async function fetchForecast() {
@@ -101,6 +106,17 @@ function createWeeklyChart(labels, temps) {
     });
 }
 
+unitToggleButton.addEventListener('click', () => {
+    if (unitToggleButton.textContent === '°F') {
+        const tempF = (currentTemp * 9/5) + 32;
+        document.querySelector('#degrees').textContent = `${Math.round(tempF)}°F`;
+        unitToggleButton.textContent = '°C';
+    } else {
+        document.querySelector('#degrees').textContent = `${Math.round(currentTemp)}°C`;
+        unitToggleButton.textContent = '°F';
+    }
+});
+
 searchButton.addEventListener('click', () => {
     let id = searchBar.value;
     if (id) {
@@ -122,7 +138,7 @@ function dateUpdate(){
 world.controls().autoRotateSpeed = 1; */
 
 window.addEventListener('load', () => {
-    fetchIP(); 
+    //fetchIP(); 
     dateUpdate();
 
 });

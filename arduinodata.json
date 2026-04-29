@@ -1,9 +1,9 @@
 {
     "data":[
         {
-            "id": 1,
+            "id": "1",
             "position": "LEN-4",
-            "temperature": 25,
+            "temperature": 21,
             "humidity": 56,
             "luminosity": 300,
             "timestamp": "2026-04-22 12:21:34"

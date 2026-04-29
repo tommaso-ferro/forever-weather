@@ -2,7 +2,7 @@ html body{
     font-family: 'Inter', sans-serif;
     height: 100vh;
     margin: 0;
-    background-image: url('images/pawel-czerwinski-jTEhcxsenME-unsplash.jpg');
+    background-image: url('images/pawel-czerwinski-V5vtlId8sKw-unsplash.jpg');
     background-size: cover;
     background-position: center;
     transition: background-image 0.8s ease; 
@@ -470,7 +470,7 @@ canvas{
 
 .humidity, .luminosity{
     border: rgba(172, 172, 172, 0.486) solid 1px;
-    border-radius: 50px;
+    border-radius: 30px;
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
     padding: 5%;
@@ -478,7 +478,7 @@ canvas{
 }
 
 .humidity h2, .luminosity h2{
-    margin: 0;
+    margin: auto;
     font-size: 1.5em;
     font-weight: 300;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.397);
@@ -490,4 +490,32 @@ canvas{
      margin-top: 10%;
     font-size: 1.2em;
     text-align: center;
+}
+
+
+.btn-toggle {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 15px; 
+}
+
+.btn-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+}
+
+
+.lab-map {
+    cursor: crosshair; 
+    width: 95%;
+    height: 150%;
 }
