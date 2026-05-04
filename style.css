@@ -187,6 +187,7 @@
     border-radius: 50px;
     text-align: center;
     margin: 8%;
+    margin-bottom: 0%;
 }
 
 .logo h1{
@@ -197,8 +198,8 @@
     text-transform: capitalize;
 }
 
-logo span {
-    font-weight: 300; /* Esempio: WeatherBold */
+.logo span {
+    font-weight: 300; 
 }
 
 .details{

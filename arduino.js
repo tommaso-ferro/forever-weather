@@ -10,25 +10,32 @@ const luminosityText = document.querySelector('#luminosity-p');
 const windSpeedText = document.querySelector('#wind-speed');
 const labMap = document.querySelector('#lab-map');
 const unitToggleButton = document.querySelector('#unit-toggle');
+const selectLab = document.querySelector('#area-select');
 
 let weeklyChartInstance = null;   
 let currentTemp;
 
-async function fetchIP(id) {
+async function fetchIP(ip, index) {
     try {
-        const response = await fetch(`http://${id}/data`);
+        const response = await fetch(`http://${ip}/data`);
         const data = await response.json();
 
-        currentTemp = data[0].temperature;
+        currentTemp = data[index].temperature;
         document.querySelector('#degrees').textContent = `${Math.round(currentTemp)}°C`;
 
-        const humidity = data[0].humidity;
+        const humidity = data[index].humidity;
         humidityText.textContent = `${humidity}%`;
 
-        const lux = data[0].luminosity;
+        const lux = data[index].luminosity;
         luminosityText.textContent = `${lux} lux`;
 
-        const laboratoryText = data[0].position;
+        const laboratoryText = data[index].position;
+
+        for (let i = 0; i < data.length; i++) {
+            const option = document.createElement('option');
+            option.textContent = data[i].position;
+            selectLab.appendChild(option);
+        }
 
         weatherInfoText.innerHTML = '';
         updatePosition(laboratoryText);
@@ -118,10 +125,10 @@ unitToggleButton.addEventListener('click', () => {
 });
 
 searchButton.addEventListener('click', () => {
-    let id = searchBar.value;
-    if (id) {
-        fetchIP(id);
-        console.log(`Fetching data for IP: ${id}`);
+    let ip = searchBar.value;
+    if (ip) {
+        fetchIP(ip, 0);
+        console.log(`Fetching data for IP: ${ip}`);
     }
 });
 
@@ -133,6 +140,24 @@ function dateUpdate(){
     let now = new Date();  
     dateText.textContent = `(${now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })})`; 
 }     
+
+let arrayPos = selectLab.options;
+function changeLab(){
+    if (selectedLab) {
+        for (let i = 0; i < arrayPos.length; i++) {
+            if (arrayPos[i].text === selectedLab) {
+                fetchIP(searchBar.value, i);
+                break;
+            }
+        }
+    }
+}
+
+selectLab.addEventListener('change', () => {
+    const selectedLab = selectLab.value;
+    updatePosition(selectedLab);
+    changeLab();
+});
 
 /* world.controls().autoRotate = true;
 world.controls().autoRotateSpeed = 1; */
