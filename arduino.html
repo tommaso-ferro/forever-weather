@@ -22,7 +22,7 @@
             </div>
             
             <div class="select-area">
-                <p>Select Area</p>
+                <p>Select PC</p>
 
                 <div class="lab-map" id="lab-map"></div>
 
@@ -38,6 +38,26 @@
                     <select name="area" id="area-select">
                         
                     </select>
+                </div>
+
+                <div class="sidebar-workstations">
+                    <p>PC Table</p>
+                    <table class="sidebar-table">
+                        <tbody>
+                            <tr onclick="document.querySelector('#search-bar').value='192.168.1.101';">
+                                <td>LEN-4 n.5</td>
+                                <td class="ip-text">192.168.1.101</td>
+                            </tr>
+                            <tr onclick="document.querySelector('#search-bar').value='192.168.1.102';">
+                                <td>LAP-2 n.2</td>
+                                <td class="ip-text">192.168.1.102</td>
+                            </tr>
+                            <tr onclick="document.querySelector('#search-bar').value='192.168.1.105';">
+                                <td>OEN-2 n.3</td>
+                                <td class="ip-text">192.168.1.105</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
